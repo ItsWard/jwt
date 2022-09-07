@@ -67,7 +67,7 @@ jobs:
       with:
         SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
         REMOTE_HOST: ${{ secrets.SERVER_HOST }}
-        REMOTE_USER: ${{ secrets.SERVER_NAME }}
+        REMOTE_USER: ${{ secrets.SERVER_USER_NAME }}
         REMOTE_PORT: ${{ secrets.SERVER_PORT }}
         SOURCE: deploy/$PROJECT_NAME.zip
         TARGET: /home/ward/
@@ -76,7 +76,7 @@ jobs:
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.SERVER_HOST }}
-        username: ${{ secrets.SERVER_NAME }}
+        username: ${{ secrets.SERVER_USER_NAME }}
         key: ${{ secrets.SERVER_SSH_KEY }}
         port: ${{ secrets.SERVER_PORT }}
         script: ./deploy.sh
