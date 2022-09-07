@@ -66,17 +66,17 @@ jobs:
       uses: easingthemes/ssh-deploy@v2.2.11
       with:
         SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
-        REMOTE_HOST: ${{ secrets.WARD_IP }}
-        REMOTE_USER: ward
-        REMOTE_PORT: 22
+        REMOTE_HOST: ${{ secrets.SERVER_HOST }}
+        REMOTE_USER: ${{ secrets.SERVER_NAME }}
+        REMOTE_PORT: ${{ secrets.SERVER_PORT }}
         SOURCE: deploy/$PROJECT_NAME.zip
         TARGET: /home/ward/
         
     - name: executing remote ssh commands using ssh key
       uses: appleboy/ssh-action@master
       with:
-        host: ${{ secrets.WARD_IP }}
-        username: ward
+        host: ${{ secrets.SERVER_HOST }}
+        username: ${{ secrets.SERVER_NAME }}
         key: ${{ secrets.SERVER_SSH_KEY }}
-        port: 22
+        port: ${{ secrets.SERVER_PORT }}
         script: ./deploy.sh
